@@ -8,7 +8,7 @@ Run `npm run start` at `/ClientApp` folder for a dev server.You will be navigate
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `/WebApplication/dist` directory.
+Run `npm run build` to build the project. The build artifacts will be stored in the `/WebApplication/dist` directory.
 
 ## Web Api
 
