@@ -5,29 +5,24 @@ namespace WebApplication.Services
 {
     public static class SingletonFactoryService
     {
-        private static ApplicationDbContext _context = null;
+
         private static IdentityService _identityService = null;
         private static JWTService _JWTService = null;
         private static SMSNotificationService _SMSNotificationService = null;
 
-        public static ApplicationDbContext GetContext()
-        {
-            if(_context == null)
-                _context = new ApplicationDbContext("DefaultConnection", WebApplication.Entity.Environment.Dev);
-            return _context;
-        }
 
-        public static IdentityService GetIdentityService()
+
+        public static IdentityService GetIdentityService(ApplicationDbContext dbContext)
         {
             if (_identityService == null)
-                _identityService = new IdentityService(GetContext());
+                _identityService = new IdentityService(dbContext);
             return _identityService;
         }
 
-        public static SMSNotificationService GetSmsNotificationService()
+        public static SMSNotificationService GetSmsNotificationService(ApplicationDbContext dbContext)
         {
             if (_SMSNotificationService == null)
-                _SMSNotificationService = new SMSNotificationService(GetContext());
+                _SMSNotificationService = new SMSNotificationService(dbContext);
             return _SMSNotificationService;
         }
 

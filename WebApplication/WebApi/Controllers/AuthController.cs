@@ -20,8 +20,8 @@ namespace WebApi.Controllers
 
         public AuthController(): base()
         {
-            DbContext = SingletonFactoryService.GetContext();
-            IdentityService = SingletonFactoryService.GetIdentityService();
+            DbContext = FactoryService.GetContext();
+            IdentityService = SingletonFactoryService.GetIdentityService(DbContext);
             JWTService = SingletonFactoryService.GetJWTService();
         }
 

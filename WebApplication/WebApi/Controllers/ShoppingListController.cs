@@ -18,8 +18,8 @@ namespace WebApi.Controllers
         public ShoppingListController()
             :base()
         {
-            DbContext = SingletonFactoryService.GetContext();
-            SMSNotificationService = SingletonFactoryService.GetSmsNotificationService();
+            DbContext = FactoryService.GetContext();
+            SMSNotificationService = SingletonFactoryService.GetSmsNotificationService(DbContext);
         }
 
         [HttpGet]

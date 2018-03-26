@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FactoryService.cs" />
     <Compile Include="IdentityService.cs" />
     <Compile Include="JWTService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
