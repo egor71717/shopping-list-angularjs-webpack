@@ -1,0 +1,38 @@
+<div class="list-container">
+    <div class="button-panel">
+        <button class="login-button" ng-click="$ctrl.onAddItemClick()">Add New</button>
+        <button class="login-button" ng-click="$ctrl.onSettingsClick()">Settings</button>
+    </div>
+    <div class="list-header" ng-if="$ctrl.shoppingListItems.length !== 0">
+        <label class="list-header-column">Name</label>
+        <label class="list-header-column">Status</label>
+        <label class="list-header-column">In Basket</label>
+    </div>
+    <div ng-repeat="item in $ctrl.shoppingListItems" 
+         ng-click="$ctrl.onItemClick(item)"
+         class="shopping-list-item">
+            <label class="item-column">
+                <span class="column-value-center">{{ item.Name }}</span>
+            </label>
+            <label class="item-column borders">
+                <span class="column-value-center">{{ item.Status }}</span>
+            </label>
+            <label class="item-column">
+                <i class="fa fa-check column-value-center" ng-if="item.InBasket"></i>
+                <i class="fa fa-times column-value-center" ng-if="!item.InBasket"></i>
+            </label>
+            <app-modal-window ng-if="item.Id === $ctrl.selectedItem.Id" ng-click="$ctrl.onItemModalWindowClick($event)">
+                <app-shopping-list-item></app-shopping-list-item>
+            </app-modal-window>
+    </div>  
+    <h2 ng-if="$ctrl.shoppingListItems.length === 0" style="color:white">
+        LIST IS EMPTY
+    </h2>
+</div>
+<app-modal-window ng-if="$ctrl.showSettings" ng-click="$ctrl.onSettingsModalWindowClick($event)">
+    <app-shopping-list-settings></app-shopping-list-settings>
+</app-modal-window>
+<app-modal-window ng-if="$ctrl.showAddItem" ng-click="$ctrl.onAddItemModalWindowClick($event)">
+    <app-shopping-list-add></app-shopping-list-add>
+</app-modal-window>
+

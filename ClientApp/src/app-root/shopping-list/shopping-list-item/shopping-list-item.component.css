@@ -1,0 +1,17 @@
+.item-props-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 1em;
+}
+.prop-tag{
+    display:  flex;
+    flex-grow: 1;
+    font-weight: bolder;
+}
+.prop-value{
+    display:  flex;
+    flex-grow: 4;
+    text-align: left;
+}

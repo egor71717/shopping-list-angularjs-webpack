@@ -1,0 +1,15 @@
+<h1 class="header">{{ $ctrl.title }}</h1>
+<nav class="navbar">
+    <div>
+        <a ui-sref='shoppinglist' ui-sref-active="link-active" class="link">LIST</a>
+        <a ui-sref="basket" ui-sref-active="link-active" class="link">BASKET</a>
+    </div>
+    <div class="auth-panel">
+        <span class="auth-header">Welcome {{$ctrl.currentUser.username}}</span>
+        <button ng-if="$ctrl.isAuthenticated" 
+                class="button-panel-button" 
+                ng-click="$ctrl.onLogoutClick()">
+                LOGOUT
+        </button>
+    </div>
+</nav>

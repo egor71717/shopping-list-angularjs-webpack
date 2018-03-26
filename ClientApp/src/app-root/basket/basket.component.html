@@ -1,0 +1,18 @@
+<div class="list-container">
+    <h2 ng-if="$ctrl.basketItems.length === 0" style="color:white;">
+        YOUR BASKET IS EMPTY
+    </h2>
+    <div ng-if="$ctrl.basketItems.length !== 0">
+        <button class="login-button" 
+            ng-click="$ctrl.onBuyAll()">
+            BUY ALL
+        </button>
+        <div ng-repeat="item in $ctrl.basketItems" class="shopping-list-item">
+            <label>
+                <span class="column-tag">name:</span>
+                <span>{{ item.Name }}</span>
+            </label>
+            <button class="button-panel-button" ng-click="$ctrl.onRemoveItem($event, item)">REMOVE</button>
+        </div>
+    </div>
+</div>

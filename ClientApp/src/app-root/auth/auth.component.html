@@ -1,0 +1,39 @@
+<div class="auth-form-container">
+    <form class="auth-form" novalidate>
+        <h2 class="login-header" ng-if="$ctrl.mode === 'login'">Log In</h2>
+        <h2 class="login-header" ng-if="$ctrl.mode === 'register'">Sign Up</h2>
+        <div class="form-items-panel" ng-if="$ctrl.mode === 'login'">
+            <div class="form-items-panel-item border-bottom">
+                <i class="fa fa-envelope"></i>
+                <input type="text" placeholder="Login" ng-model="$ctrl.loginForm.login" class="custom-input">
+            </div>
+            <div class="form-items-panel-item">
+                <i class="fa fa-lock"></i>
+                <input type="password" placeholder="Password" ng-model="$ctrl.loginForm.password" class="custom-input">
+            </div>
+        </div>
+        <div class="form-items-panel" ng-if="$ctrl.mode === 'register'">
+            <div class="form-items-panel-item border-bottom">
+                <i class="fa fa-envelope"></i>
+                <input type="text" placeholder="Login" ng-model="$ctrl.registerForm.login" class="custom-input">
+            </div>
+            <div class="form-items-panel-item border-bottom">
+                <i class="fa fa-lock"></i>
+                <input type="password" placeholder="Password" ng-model="$ctrl.registerForm.password" class="custom-input">
+            </div>
+            <div  class="form-items-panel-item">
+                <i class="fa fa-phone"></i>
+                <input placeholder="Phone" ng-model="$ctrl.registerForm.phone" class="custom-input">
+            </div>
+        </div>
+        <button class="login-button" ng-click="$ctrl.login()" ng-if="$ctrl.mode === 'login'">login</button>
+        <button class="login-button" ng-click="$ctrl.register()" ng-if="$ctrl.mode === 'register'">register</button>
+        <div class="button-panel">
+            <button class="button-panel-button" ng-click="$ctrl.changeMode('login')" ng-if="$ctrl.mode === 'register'">LOGIN</button>
+            <button class="button-panel-button" ng-click="$ctrl.changeMode('register')" ng-if="$ctrl.mode === 'login'">SIGN UP</button>
+            <button class="button-panel-button" disabled>RESET PASSWORD</button>
+        </div>
+    </form>
+</div>
+
+

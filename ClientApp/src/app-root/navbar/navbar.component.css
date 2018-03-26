@@ -1,0 +1,33 @@
+.auth-header{
+    text-transform: uppercase;
+    color: white;
+    margin-right: 1em;
+}
+.auth-panel{
+    margin-left:auto;
+    display: flex;
+}
+.header{
+    color: white;
+    padding-left: 2em;
+    font-size: 1.5em;
+}
+.link-active{
+    font-weight: bolder;
+}
+.link{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 1em;
+}
+.link:hover{
+    color: grey;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    padding: 1em 3em; 
+    background-color:darkblue;
+}
+

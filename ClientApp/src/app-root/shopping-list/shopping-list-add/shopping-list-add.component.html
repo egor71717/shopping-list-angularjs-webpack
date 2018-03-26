@@ -1,0 +1,9 @@
+<h3 class="login-header">New Item</h3>
+<form novalidate class="flex-column">
+    <input ng-model="$ctrl.itemForm.name" style="width: 100%" maxlength="20" placeholder="Name"/>
+    <textarea ng-model="$ctrl.itemForm.description" style="width: 100%" placeholder="Description"></textarea>
+</form>
+<div class="button-panel">
+    <button class="button-panel-button" ng-click="$ctrl.onSaveClick($event)">SAVE</button>
+    <button class="button-panel-button" ng-click="$ctrl.onCloseItemClick($event)">CLOSE</button>
+</div>
