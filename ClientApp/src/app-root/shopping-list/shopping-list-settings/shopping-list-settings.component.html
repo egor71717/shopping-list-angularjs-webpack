@@ -1,0 +1,18 @@
+<div class="item-props-container">
+    <label>
+        <span>show opened items:</span>
+        <input type="checkbox" ng-model="$ctrl.settings.showOpened">
+    </label>
+    <label>
+        <span>show closed items:</span>
+        <input type="checkbox" ng-model="$ctrl.settings.showClosed">
+    </label>
+    <label>
+        <span>show in basket:</span>
+        <input type="checkbox" ng-model="$ctrl.settings.showInBasket">
+    </label>
+</div>
+<div class="button-panel">
+    <button class="button-panel-button" ng-click="$ctrl.onSaveSettingsClick()">SAVE SETTINGS</button>
+    <button class="button-panel-button" ng-click="$ctrl.onCloseSettingsClick()">CLOSE</button>
+</div>

@@ -1,0 +1,19 @@
+.fixed-window{
+    display:flex;
+    position: fixed;
+    left:0;
+    top:0;
+    bottom: 0;
+    right: 0;
+    padding: 3em;
+    background-color:rgba(0, 0, 0,  0.8);
+}
+.content-container{
+    background-color: azure;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    text-align: center;
+    margin: auto;
+}

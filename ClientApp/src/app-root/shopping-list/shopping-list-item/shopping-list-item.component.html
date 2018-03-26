@@ -1,0 +1,18 @@
+<div class="item-props-container">
+    <label class="flex-row">
+        <span class="prop-tag">Name:</span>
+        <span class="prop-value">{{ $ctrl.item.Name }}</span>
+    </label>
+    <label>
+        <span class="prop-tag">Created On:</span>
+        <span class="prop-value">{{ $ctrl.item.CreatedOn }}</span>
+    </label>
+    <label>
+        <span class="prop-tag">Description:</span>
+        <span class="prop-value">{{ $ctrl.item.Description }}</span>
+    </label>
+</div>
+<div class="button-panel">
+    <button class="button-panel-button" ng-click="$ctrl.onToBasketClick($event)" ng-if="$ctrl.canPutToBasket">TO BASKET</button>
+    <button class="button-panel-button" ng-click="$ctrl.onCloseItemClick($event)">CLOSE</button>
+</div>
