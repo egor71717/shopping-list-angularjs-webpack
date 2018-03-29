@@ -28,13 +28,13 @@ const resolveAuthentication = (resolve, resolveCallback, $state) => {
     return actorFromJWT(token)
 }
 
-const checkToken = () => {
+const ensureAuthenticated = ($http) => {
     const token = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN)
     if(token){
-        return actorFromJWT(token)
+        const validateUrl = `${apiRoot}/auth/validate`
+        return $http.post(validateUrl, token)
     }
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN)
-    return undefined
+    return Promise.reject(new Error("no authentication token"))
 }
 
 export const authServiceFactory = ($http, $state) => {
@@ -43,11 +43,17 @@ export const authServiceFactory = ($http, $state) => {
     authService.currentUser$ = new BehaviorSubject(undefined)
 
     authService.init = () => {
-        const currentUser = checkToken()
-        if(currentUser){
-            authService.isAuthenticated$.next(true)
-            authService.currentUser$.next(currentUser)
-        }
+        ensureAuthenticated($http).then(
+            resolve => {
+                const currentUser = actorFromJWT(resolve)
+                authService.isAuthenticated$.next(true)
+                authService.currentUser$.next(currentUser)
+            },
+            reject => {
+                localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN)
+                $state.go('auth')
+            }
+        )
         return authService
     }
 

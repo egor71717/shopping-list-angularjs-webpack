@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebApi.Filters;
 using WebApplication.Entity.EntityFramework;
 using WebApplication.Entity.ShoppingList;
 using WebApplication.Models;
@@ -9,6 +10,7 @@ using WebApplication.Services;
 
 namespace WebApi.Controllers
 {
+    [JWTAuthentication]
     public class ShoppingListController : ApiController
     {
         private readonly Boolean EnableNotifications = false;
@@ -19,7 +21,7 @@ namespace WebApi.Controllers
             :base()
         {
             DbContext = FactoryService.GetContext();
-            SMSNotificationService = SingletonFactoryService.GetSmsNotificationService(DbContext);
+            SMSNotificationService = SingletonFactoryService.GetSmsNotificationService();
         }
 
         [HttpGet]

@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         public AuthController(): base()
         {
             DbContext = FactoryService.GetContext();
-            IdentityService = SingletonFactoryService.GetIdentityService(DbContext);
+            IdentityService = SingletonFactoryService.GetIdentityService();
             JWTService = SingletonFactoryService.GetJWTService();
         }
 
@@ -55,6 +55,16 @@ namespace WebApi.Controllers
             }
             else
                 return BadRequest();
+        }
+
+        [HttpGet]
+        public IHttpActionResult Validate(String token)
+        {
+            var validationResult = JWTService.ValidateToken(token);
+            if (validationResult != null)
+                return Json(validationResult);
+            else
+                return BadRequest("invalid token");
         }
     }
 }

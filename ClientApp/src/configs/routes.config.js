@@ -18,11 +18,11 @@ const routerStates = {
         component:  COMPONENT_NAME.AUTH
     }  
 }
-
-export const routesConfig = ['$uiRouterProvider', '$locationProvider', ($uiRouter, $location) => {
+const configureRoutes = ($uiRouter, $location) => {
     $location.hashPrefix('')
     $uiRouter.urlService.rules.otherwise({ state: 'shoppinglist' })
     for(let state in routerStates){
         $uiRouter.stateRegistry.register(routerStates[state])
     }
-}]
+}
+export const routesConfig = ['$uiRouterProvider', '$locationProvider', configureRoutes]

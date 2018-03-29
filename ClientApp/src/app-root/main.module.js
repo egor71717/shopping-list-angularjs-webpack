@@ -1,4 +1,4 @@
-import uirouter from "@uirouter/angularjs";
+import uirouter from "@uirouter/angularjs"
 
 //components
 import { appRootComponent } from './_files/app-root.component'
@@ -15,12 +15,14 @@ import { navbarComponent } from './navbar/navbar.component'
 import { COMPONENT_NAME } from '../constants/component-names.constant'
 
 //services
-import { authServiceFactory } from "./auth/auth.service";
+import { authServiceFactory } from "./auth/auth.service"
 import { shoppingListServiceFactory } from './shopping-list/_files/shopping-list.service'
 import { navbarServiceFactory } from './navbar/navbar.service'
+import { authHeaderInterceptor } from './auth/auth-header.interceptor'
 
 //configs
 import { routesConfig } from  '../configs/routes.config'
+import { interceptorsConfig } from '../configs/interceptors.config'
 import { authHookRunBlock } from './auth/auth.hook'
 //import { httpInterceptorsConfig } from '../configs/http-interceptors.config'
 
@@ -41,9 +43,12 @@ MAIN_MODULE.component(COMPONENT_NAME.NAVBAR,                    navbarComponent)
 MAIN_MODULE.factory('authService', authServiceFactory)
 MAIN_MODULE.factory('shoppingListService', shoppingListServiceFactory)
 MAIN_MODULE.factory('navbarService', navbarServiceFactory)
+MAIN_MODULE.factory('authHeaderInterceptor', authHeaderInterceptor)
 
 //config module
-MAIN_MODULE.config(routesConfig);
+MAIN_MODULE.config(routesConfig)
+MAIN_MODULE.config(interceptorsConfig)
 
 //run blocks
-MAIN_MODULE.run(authHookRunBlock);
+MAIN_MODULE.run(authHookRunBlock)
+

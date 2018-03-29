@@ -8,20 +8,31 @@ namespace WebApplication.Services
 {
     public class JWTService
     {
-        private String secretKey = "not so secret supersecret secret key";
+        private SecurityKey secretSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("not so secret supersecret secret key"));
         private JwtSecurityTokenHandler _tokenHandler = new JwtSecurityTokenHandler();
 
-        public Boolean ValidateToken(String token)
+        public ClaimsPrincipal ValidateToken(String token)
         {
             ClaimsPrincipal principal = null;
             SecurityToken validToken = null;
             TokenValidationParameters validationParameters = new TokenValidationParameters()
             {
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = secretSigningKey,
+                ValidateAudience = false,
+                ValidateIssuer = false
             };
-            principal = _tokenHandler.ValidateToken(token, validationParameters, out validToken);
-            var validJwt = validToken as JwtSecurityToken;
-            return validJwt == null;
-
+            try
+            {
+                principal = _tokenHandler.ValidateToken(token, validationParameters, out validToken);
+                return principal;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
         public String GenerateToken(ClaimsIdentity identity)
         {
@@ -40,9 +51,10 @@ namespace WebApplication.Services
 
         private SigningCredentials GenerateSigningCredentials()
         {
-            Byte[] key = Encoding.ASCII.GetBytes(secretKey);
-            SigningCredentials signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256Signature, SecurityAlgorithms.Sha256Digest);
+            SigningCredentials signingCredentials = new SigningCredentials(
+                secretSigningKey,
+                SecurityAlgorithms.HmacSha256Signature,
+                SecurityAlgorithms.Sha256Digest);
             return signingCredentials;
         }
     }

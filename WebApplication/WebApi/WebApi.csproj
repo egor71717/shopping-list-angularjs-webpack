@@ -125,6 +125,8 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ShoppingListController.cs" />
+    <Compile Include="Filters\AuthenticationErrorResult.cs" />
+    <Compile Include="Filters\JWTAuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
